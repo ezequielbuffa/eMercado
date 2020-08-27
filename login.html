@@ -34,20 +34,35 @@
       padding: 15px;
       margin: auto;
     }
+
+    .imgcontainer {
+      margin: 24px 0 12px 0;
+    }
+
+    .login {
+      margin-bottom: 12px;
+    }
+
   </style>
 </head>
 
 <body class="text-center">
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 1 (Fecha de entrega: 16/08/2020) -> Punto 3 y 4.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <form id="loginForm" class="signin">
+    <div class="login">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" id="email" class="form-control" placeholder="Email address" required autofocus/>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="password" class="form-control" placeholder="Password" required/>
     </div>
-  </div>
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"/> Remember me
+      </label>
+    </div>
+      <button id="submitButton" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
 
-  <script src="js/init.js"></script>
   <script src="js/login.js"></script>
 </body>
 </html>
