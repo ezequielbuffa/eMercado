@@ -89,7 +89,7 @@ function sortAndShowProducts(sortCriteria, productsArray){
 
     currentProductsArray = sortProducts(currentSortCriteria, currentProductsArray);
 
-    //Muestro las categorías ordenadas
+    //Muestro los productos ordenadas
     showProductsList();
 }
 
@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         showProductsList();
     });
 
-    document.getElementById('searchBarId').addEventListener('keyup',(e) => {
+     document.getElementById('searchBarId').addEventListener('keyup',(e) => {
 
         let criteria = e.target.value;
         let filterProd = searchProducts(criteria, currentProductsArray);
@@ -162,4 +162,4 @@ document.addEventListener("DOMContentLoaded", function (e) {
             });
         }
     });
-});
+}); 
