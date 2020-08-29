@@ -126,8 +126,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
     });
 
     document.getElementById("rangeFilterPrice").addEventListener("click", function(){
-        //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
-        //de productos por categoría.
+        //Obtengo el mínimo y máximo de los intervalos para filtrar por precio
+        //de productos.
         minPrice = document.getElementById("rangeFilterPriceMin").value;
         maxPrice = document.getElementById("rangeFilterPriceMax").value;
 
@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         showProductsList();
     });
 
-     document.getElementById('searchBarId').addEventListener('keyup',(e) => {
+    /* document.getElementById('searchBarId').addEventListener('keyup',(e) => {
 
         let criteria = e.target.value;
         let filterProd = searchProducts(criteria, currentProductsArray);
@@ -161,5 +161,5 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 }
             });
         }
-    });
+    }); */
 }); 

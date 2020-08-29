@@ -44,11 +44,10 @@ var getJSONData = function(url){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-  var userEmail = localStorage.getItem('email');
-  var userElement = document.getElementById('username');
-  var token = localStorage.getItem('token');
-  userElement.innerHTML = 'Usuario: '+ userEmail;
-  if(!token){
+  let email = localStorage.getItem('email');
+  let userElement = document.getElementById('username');
+  userElement.innerHTML = 'Usuario: '+ email;
+  if(email === null){
     window.location.href = "/login";
   }
 });
