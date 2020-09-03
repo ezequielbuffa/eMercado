@@ -27,14 +27,61 @@
       <a class="py-2 d-none d-md-inline-block" id="username" style="color: white;"></a>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 13/09/2020) y Entrega 4 (Fecha de entrega: 20/09/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <main role="main">
+    <div class="container mt-5">
+      <div class="text-center p-4">
+        <h2>Información del producto</h2>
+        <p class="lead">Encontrarás aquí toda la información del producto seleccionado.</p>
+      </div>
+      <div>
+        <h3 id="productInfoName"></h3>
+        <hr class="my-3">
+        <dl>
+          <dd>
+            <div class="row text-center text-lg-left pt-2" id="productInfoImagesGallery"></div>
+          </dd>
+          <dt>Descripción</dt>
+            <dd>
+              <p id="productInfoDescription"></p>
+            </dd>
+          <dt>Precio</dt>
+            <dd>
+              <p id="productInfoCost"></p>
+            </dd>
+          <dt>Vendidos</dt>
+            <dd>
+              <p id="productInfoSoldCount"></p>
+            </dd>
+          <dt>Categoría</dt>
+            <dd>
+              <p id="productInfoCategory"></p>
+            </dd>
+          <div id="sendComment" >
+            <dt>Comentarios</dt>
+              <dd>
+                <div class="panel-body" id="productsInfoComments">
+              </dd>
+              <div>
+                <span class="fa fa-star" id="star1" onclick="add(this,1)"></span>
+                <span class="fa fa-star" id="star2" onclick="add(this,2)"></span>
+                <span class="fa fa-star" id="star3" onclick="add(this,3)"></span>
+                <span class="fa fa-star" id="star4" onclick="add(this,4)"></span>
+                <span class="fa fa-star" id="star5" onclick="add(this,5)"></span>
+              </div>
+              <dd>
+                <input style="margin-top: 10px;" class="forumPost form-control" type="text" name="comment_author" id="comment_author" value="" placeholder="Nombre">
+                <textarea style="margin-top: 10px;" id="commentBox" class="autoExpand forumPost form-control" rows="4" data-min-rows="4" placeholder="Comenta aquí..."></textarea>
+                <button style="margin-top: 10px;" type="submit" class="btn btn-success green" id="send"><i class="fa fa-share"></i>Enviar</button>
+              </dd>
+            </div>
+              <!-- <dt>Productos relacionados</dt>
+            <dd>
+              <div class="row text-center text-lg-left pt-2" id="productInfoRelatedProducts"></div>
+            </dd> -->
+        </dl>
+      </div>
     </div>
-  </div>
+  </main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">

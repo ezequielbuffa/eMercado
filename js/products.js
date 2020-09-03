@@ -1,8 +1,6 @@
 const ORDER_ASC_BY_COST = "PrecioAsc";
 const ORDER_DESC_BY_COST = "PrecioDesc";
 const ORDER_DESC_BY_RELEVANCE = "Relevancia";
-var currentProductsArray = [];
-var currentSortCriteria = undefined;
 var minPrice = undefined;
 var maxPrice = undefined;
 
@@ -35,11 +33,13 @@ function sortProducts(criteria, array){
 function showProductsList(){
 
     let htmlContentToAppend = "";
+    var search = document.getElementById("search").value;
+
     for(let i = 0; i < currentProductsArray.length; i++){
         let products = currentProductsArray[i];
 
         if (((minPrice == undefined) || (minPrice != undefined && parseInt(products.cost) >= minPrice)) &&
-            ((maxPrice == undefined) || (maxPrice != undefined && parseInt(products.cost) <= maxPrice))){
+            ((maxPrice == undefined) || (maxPrice != undefined && parseInt(products.cost) <= maxPrice))&& (products.name.toUpperCase().includes(search.toUpperCase()))){
 
             htmlContentToAppend += `
             <a href="product-info.html" class="list-group-item list-group-item-action">
@@ -64,20 +64,6 @@ function showProductsList(){
 
         document.getElementById("prod-list-container").innerHTML = htmlContentToAppend;
     }
-}
-
-function searchProducts(value, products) {
-
-    if (value !== undefined && value !== null && value !== ''){
-        let filter = [];
-        for (let i = 0; i < products.length; i++) {
-            if(products[i].name.toLowerCase().search(value.toLowerCase()) >= 0) {
-                filter.push(products[i]);
-            }
-        }
-        return filter;
-    }
-    return [];
 }
 
 function sortAndShowProducts(sortCriteria, productsArray){
@@ -148,18 +134,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
         showProductsList();
     });
 
-    /* document.getElementById('searchBarId').addEventListener('keyup',(e) => {
-
-        let criteria = e.target.value;
-        let filterProd = searchProducts(criteria, currentProductsArray);
-        if(filterProd.lenght > 0) {
-            showProductsList(filterProd);
-        }else {
-            getJSONData(PRODUCTS_URL).then(function(resultObj){
-                if(resultObj.status === "ok"){
-                    showProductsList();
-                }
-            });
-        }
-    }); */
+    document.getElementById("search").addEventListener("keyup", function () {
+        
+        showProductsList();
+    });
 }); 
+
