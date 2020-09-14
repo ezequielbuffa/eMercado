@@ -37,9 +37,6 @@
         <h3 id="productInfoName"></h3>
         <hr class="my-3">
         <dl>
-          <dd>
-            <div class="row text-center text-lg-left pt-2" id="productInfoImagesGallery"></div>
-          </dd>
           <dt>Descripción</dt>
             <dd>
               <p id="productInfoDescription"></p>
@@ -56,12 +53,15 @@
             <dd>
               <p id="productInfoCategory"></p>
             </dd>
-          <div id="sendComment" >
+            <dd>
+              <div class="row text-center text-lg-left pt-2" id="productInfoImagesGallery"></div>
+            </dd>
+          <div id="sendComment">
             <dt>Comentarios</dt>
               <dd>
                 <div class="panel-body" id="productsInfoComments">
               </dd>
-              <div>
+              <div id="star_rating">
                 <span class="fa fa-star" id="star1" onclick="add(this,1)"></span>
                 <span class="fa fa-star" id="star2" onclick="add(this,2)"></span>
                 <span class="fa fa-star" id="star3" onclick="add(this,3)"></span>
@@ -69,7 +69,6 @@
                 <span class="fa fa-star" id="star5" onclick="add(this,5)"></span>
               </div>
               <dd>
-                <input style="margin-top: 10px;" class="forumPost form-control" type="text" name="comment_author" id="comment_author" value="" placeholder="Nombre">
                 <textarea style="margin-top: 10px;" id="commentBox" class="autoExpand forumPost form-control" rows="4" data-min-rows="4" placeholder="Comenta aquí..."></textarea>
                 <button style="margin-top: 10px;" type="submit" class="btn btn-success green" id="send"><i class="fa fa-share"></i>Enviar</button>
               </dd>

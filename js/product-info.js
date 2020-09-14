@@ -33,14 +33,22 @@ function showComments(array){
             </div>
             <div>
                 <p class="row"> `+ product_info_comments[i].description + ` </p>
-                <span class="fa fa-star checked"> `+ product_info_comments[i].score + ` </span>
+                `+checkedStar(product_info_comments[i].score)+`
             </div>
             <hr>
         </div>
         `
-
+        
         document.getElementById("productsInfoComments").innerHTML = htmlContentToAppend;
     }
+}
+
+function checkedStar(n) {
+    var checked = `<span class="fa fa-star checked"></span>`;
+    var noChecked = `<span class="fa fa-star "></span>`;
+
+    return (checked.repeat(n)+ noChecked.repeat(5-n));
+    
 }
 
 function add(ths,sno){
@@ -97,3 +105,31 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     })
 });
+
+document.getElementById("send").onclick= function (e) {
+
+    let date = new Date();
+    let name = localStorage.getItem("email");
+    let com = document.getElementById("commentBox").value;
+    let stars = document.getElementById("star_rating");
+
+    stars.onclick = (e) => {
+        e.target.value;
+    }
+
+
+
+
+    const newcomment = {
+        dateTime: date,
+        description: com,
+        score: stars,
+        user: name
+    }
+
+    product_info_comments.push(newcomment);
+
+    showComments(product_info_comments);
+
+    console.log(stars)
+};
