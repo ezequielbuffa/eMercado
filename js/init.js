@@ -46,7 +46,7 @@ var getJSONData = function(url){
 document.addEventListener("DOMContentLoaded", function(e){
   let email = localStorage.getItem('email');
   let userElement = document.getElementById('username');
-  userElement.innerHTML = 'Usuario: '+ email;
+  userElement.innerHTML = email;
   if(email === null){
     window.location.href = "/login";
   }

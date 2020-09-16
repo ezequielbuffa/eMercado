@@ -1,5 +1,6 @@
 var product_info = {};
 var product_info_comments = {};
+var product_info_relatedProducts = {};
 
 function showImagesGallery(array){
 
@@ -17,6 +18,32 @@ function showImagesGallery(array){
         `
 
         document.getElementById("productInfoImagesGallery").innerHTML = htmlContentToAppend;
+    }
+}
+
+function showRelatedProducts(array){
+
+    let htmlContentToAppend = "";
+
+    for(let i = 1; i < array.length; i=i+2){
+        let relatedProducts = array[i]
+
+        htmlContentToAppend += `
+        <div class="col-lg-3 col-md-4 col-6">
+            <div class="container">
+                <h3 class="mb-1">${relatedProducts.name}</h3>
+                <div class="d-block mb-4 h-100">
+                    <a href="">
+                        <img class="img-fluid img-thumbnail" src="` + relatedProducts.imgSrc + `" alt="${relatedProducts.description}">
+                    </a>
+                </div>
+                <p class="mb-1">${relatedProducts.description}</p>
+            </div>
+        </div>
+        `
+        
+
+        document.getElementById("productInfoRelatedProducts").innerHTML = htmlContentToAppend;
     }
 }
 
@@ -102,6 +129,17 @@ document.addEventListener("DOMContentLoaded", function(e){
             product_info_comments = resultObj.data;
 
             showComments(product_info_comments);
+        }
+    })
+
+    getJSONData(PRODUCTS_URL).then(function(resultObj){
+        if (resultObj.status === "ok")
+        {
+            product_info_relatedProducts = resultObj.data;
+
+            showRelatedProducts(product_info_relatedProducts);
+
+            console.log(product_info_relatedProducts)
         }
     })
 });
