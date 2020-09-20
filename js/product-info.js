@@ -6,19 +6,16 @@ function showImagesGallery(array){
 
     let htmlContentToAppend = "";
 
-    for(let i = 0; i < array.length; i++){
+    for(let i = 1; i < array.length; i++){
         let imageSrc = array[i];
 
         htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
+            <div class="carousel-item">
+                <img class="d-block w-100" src="` + imageSrc + `" alt="">
             </div>
-        </div>
         `
-
-        document.getElementById("productInfoImagesGallery").innerHTML = htmlContentToAppend;
     }
+    document.getElementById("carousel-inner").innerHTML += htmlContentToAppend;
 }
 
 function showRelatedProducts(array){
@@ -31,13 +28,15 @@ function showRelatedProducts(array){
         htmlContentToAppend += `
         <div class="col-lg-3 col-md-4 col-6">
             <div class="container">
-                <h3 class="mb-1">${relatedProducts.name}</h3>
                 <div class="d-block mb-4 h-100">
                     <a href="">
                         <img class="img-fluid img-thumbnail" src="` + relatedProducts.imgSrc + `" alt="${relatedProducts.description}">
                     </a>
                 </div>
+                <h4 class="mb-1">${relatedProducts.name}</h3>
                 <p class="mb-1">${relatedProducts.description}</p>
+                <p class="mb-1"><b>` + relatedProducts.currency +`</b> ${relatedProducts.cost}</p>
+                <small class="mb-1">Vendidos: ${relatedProducts.soldCount}</small>
             </div>
         </div>
         `
@@ -109,15 +108,13 @@ document.addEventListener("DOMContentLoaded", function(e){
             let productInfoCostHTML = document.getElementById("productInfoCost");
             let productInfoSoldCountHTML = document.getElementById("productInfoSoldCount");
             let productInfoCategoryHTML = document.getElementById("productInfoCategory");
-            //let productInfoRelatedProductsHTML = document.getElementById("productInfoRelatedProducts");
 
             productInfoNameHTML.innerHTML = product_info.name;
             productInfoDescriptionHTML.innerHTML = product_info.description;
             productInfoCostHTML.innerHTML = product_info.currency + ' ' + product_info.cost;
             productInfoSoldCountHTML.innerHTML = product_info.soldCount;
             productInfoCategoryHTML.innerHTML = product_info.category;
-            //productInfoRelatedProductsHTML.innerHTML = product_info.relatedProducts;
-
+           
             //Muestro las imagenes en forma de galería
             showImagesGallery(product_info.images);
         }
@@ -138,8 +135,6 @@ document.addEventListener("DOMContentLoaded", function(e){
             product_info_relatedProducts = resultObj.data;
 
             showRelatedProducts(product_info_relatedProducts);
-
-            console.log(product_info_relatedProducts)
         }
     })
 });
@@ -154,10 +149,7 @@ document.getElementById("send").onclick= function (e) {
     stars.onclick = (e) => {
         e.target.value;
     }
-
-
-
-
+    
     const newcomment = {
         dateTime: date,
         description: com,
@@ -168,6 +160,5 @@ document.getElementById("send").onclick= function (e) {
     product_info_comments.push(newcomment);
 
     showComments(product_info_comments);
-
-    console.log(stars)
 };
+
