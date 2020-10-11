@@ -146,9 +146,7 @@ document.getElementById("send").onclick= function (e) {
     let com = document.getElementById("commentBox").value;
     let stars = document.getElementById("star_rating");
 
-    stars.onclick = (e) => {
-        e.target.value;
-    }
+    stars = parseInt(stars);
     
     const newcomment = {
         dateTime: date,
