@@ -36,14 +36,14 @@
 <body>
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
-      <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
-      <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
-      <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
-      <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
+      <a class="py-2 d-none d-md-inline-block" href="./index.html">Inicio</a>
+      <a class="py-2 d-none d-md-inline-block" href="./categories.html">Categorías</a>
+      <a class="py-2 d-none d-md-inline-block" href="./products.html">Productos</a>
+      <a class="py-2 d-none d-md-inline-block" href="./sell.html">Vender</a>
       <button class="py-2 d-none d-md-inline-block dropdown-toggle" id="username"  type="button" data-toggle="dropdown" style="color: white; background: Transparent no-repeat; cursor: pointer; overflow: hidden; outline: none; border: none;"  ></button>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="cart.html">Mi carrito</a>
-        <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+        <a class="dropdown-item" href="./cart.html">Mi carrito</a>
+        <a class="dropdown-item" href="./my-profile.html">Mi perfil</a>
         <a id="logout" class="dropdown-item" href="">Cerrar sesión</a>
       </div>
     </div>
@@ -55,52 +55,177 @@
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
             <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Productos</th>
-                        <th>Cantidad</th>
-                        <th class="text-center">Precio</th>
-                        <th class="text-center">Total</th>
-                        <th> </th>
-                    </tr>
-                </thead>
-                <tbody id="cartItems">
-                </tbody>
+              <thead>
                   <tr>
-                      <td>   </td>
-                      <td>   </td>
-                      <td>   </td>
-                      <td><h3>Total:</h3></td>
-                      <td class="text-right"><h3><strong id="cartTotal"></strong></h3></td>
+                      <th>Productos</th>
+                      <th>Cantidad</th>
+                      <th class="text-center">Precio</th>
+                      <th class="text-center">Total</th>
+                      <th> </th>
                   </tr>
-                  <tr>
-                      <td>   </td>
-                      <td>   </td>
-                      <td>   </td>
-                      <td>   </td>
-                      <td>
-                      <button type="button" class="btn btn-success">
-                          Comprar <span class="glyphicon glyphicon-play"></span>
-                      </button></td>
-                  </tr>
+              </thead>
+              <tbody id="cartItems"></tbody>
+                <tr>
+                  <td>
+                    <h5>Método de pago:</h5>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                      Tarjeta de crédito <span class="glyphicon glyphicon-play"></span>
+                    </button>
+                    <form>
+                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Tarjeta de crédito</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="card ">
+                              <div class="card-header">
+                                          <!-- Info de tarjeta de credito-->
+                                <div id="credit-card" class="tab-pane fade show active pt-3">
+                                  <form role="form" id="cardForm">
+                                    <div class="form-group">
+                                      <label for="username">
+                                        <h6>Nombre del titular</h6>
+                                      </label> 
+                                      <input id="cardName" type="text" name="username" placeholder="Nombre del titular"  class="form-control" required> 
+                                    </div>
+                                    <div class="form-group"> 
+                                      <label for="cardNumber">
+                                        <h6>Número de tarjeta</h6>
+                                      </label>
+                                      <div class="input-group"> 
+                                        <input id="cardNumber" type="text" name="cardNumber" placeholder="Número de tarjeta" class="form-control " required>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-sm-8">
+                                        <div class="form-group"> 
+                                          <label>
+                                            <span class="hidden-xs">
+                                              <h6>Fecha de expiración</h6>
+                                            </span>
+                                          </label>
+                                          <div class="input-group"> 
+                                            <input id="cardExpireMonth" type="number" placeholder="MM" name="" class="form-control" min="1" required> 
+                                            <input id="cardExpireYear" type="number" placeholder="YY" name="" class="form-control"  min="1" required> 
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="form-group mb-4"> 
+                                          <label data-toggle="tooltip" title="Three digit CV code on the back of your card">
+                                            <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
+                                          </label> 
+                                          <div class="input-group">
+                                            <input id="cvv" type="text" minlength="3" maxlength="3" required class="form-control"> 
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div><!-- End -->
+                              </div>
+                              <div class="modal-footer">
+                                
+                                <input  type="submit" class="btn btn-primary" id="saveButton" value="Guardar" ></input>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" style="margin-top: 3px;">
+                    Transferencia Bancaria <span class="glyphicon glyphicon-play"></span>
+                  </button>
+                  <form>
+                  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel1">Transferencia Bancaria</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="card ">
+                          <div class="card-header">
+                            <form role="form" id="cardForm1">
+                              <div id="net-banking" class="tab-pane active pt-3">
+                                <div class="form-group "> <label for="Select Your Bank">
+                                        <h6>Selecciona tu banco</h6>
+                                    </label> <select class="form-control" id="ccmonth" required>
+                                        <option value="" selected disabled >--Por favor selecciona tu banco--</option>
+                                        <option>Bank 1</option>
+                                        <option>Bank 2</option>
+                                        <option>Bank 3</option> 
+                                    </select> </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <input  type="submit" class="btn btn-primary" id="saveButtonBank" value="Guardar" ></input>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </form>   </td>
+                  <td>   </td>
+                  <td>   </td>
+                  <td><h5>Subtotal:</h5></td>
+                  <td class="text-right"><h5><strong id="cartSubTotal"></strong></h5></td>
+                </tr>
+                <tr><!-- Contenido de tipo de envio-->
+                  <td><select class="form-control" style="width: auto;" id="selectCost" required>
+                    <option value="" disabled selected>Método de envío</option>
+                    <option value="15">Premium (2-5 días) - 15%</option>
+                    <option value="7">Express (5-8 días) - 7%</option>
+                    <option value="5">Standard (12-15 días) - 5%</option>
+                  </select>
+                  <!-- End --></td>
+                  <td>   </td>
+                  <td>   </td>
+                  <td><h5>Envío:</h5></td>
+                  <td class="text-right"><h5><strong id="sendCost"></strong></h5></td>
+                </tr>
+                <tr>
+                  <td>   </td>
+                  <td>   </td>
+                  <td>   </td>
+                  <td><h3>Total:</h3></td>
+                  <td class="text-right"><h3><strong id="cartTotal"></strong></h3></td>
+                </tr>
+                <tr>
+                  <td>   </td>
+                  <td>   </td>
+                  <td>   </td>
+                  <td>   </td>
+                  <td>
+                    <button type="button" class="btn btn-success">
+                        Comprar <span class="glyphicon glyphicon-play"></span>
+                    </button>
+                  </td>
+                </tr>
             </table>
           </div>
-    </div>
-  </div>
-  </div>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
+        </div>
+      </div>
+      <div id="spinner-wrapper">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
-</body>
+</body >
 
 </html>

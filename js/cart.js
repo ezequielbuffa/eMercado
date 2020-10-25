@@ -1,11 +1,13 @@
-function cartPopulate(cart){
+
+
+function cartPopulate(array){
 
     var cartContainer = document.getElementById('cartItems');
-    totalCart = 0
-    for (let index = 0; index < cart.length; index++) {
-        const element = cart[index];
+    var cartItem = "";
+    for (let index = 0; index < array.length; index++) {
+        let element = array[index];
     
-        var cartItem = `<tr class="cart-row">
+        cartItem += `<tr class="cart-row">
                             <td class="col-sm-8 col-md-6">
                                 <div class="media">
                                     <a class="thumbnail pull-left" href="#"> <img class="media-object" src="${element.src}" style="width: 72px; height: 72px;"> </a>
@@ -28,23 +30,78 @@ function cartPopulate(cart){
 
                     cartContainer.innerHTML = cartItem;
 
-                    var cartInicialTotal = document.getElementById('cartTotal')
-                    cartInicialTotal.innerText = element.currency + ' ' +  (element.count * element.unitCost)
-
-                    document.getElementById('articleCount').onchange=function(e){
-                        var total = e.target.value * element.unitCost
-                        var totalElement = document.getElementById('articleTotal');
-                        totalElement.innerText = element.currency + ' ' + total;
-                        var cartTotal = document.getElementById('cartTotal');
-                        cartTotal.innerText = element.currency + ' ' + total;
+                    var count = document.getElementById('articleCount').value;
+                    var cartInicialSubTotal = document.getElementById('cartSubTotal');
+                        cartInicialSubTotal.innerText = element.currency + ' ' +  (count * element.unitCost);
+                    var cartInicialSend = document.getElementById('sendCost');
+                        cartInicialSend.innerText = '%';
+                    document.getElementById('sendCost').innerText = '%';
+                    var cartInicialTotal = document.getElementById('cartTotal');
+                    cartInicialTotal.innerText = element.currency + ' ' + (element.count * element.unitCost);
+                    let keysToRemove = ['costo de envio', 'Card info', 'Card expiration']
+                    for (key of keysToRemove) {
+                        localStorage.removeItem(key);
                     }
-                    
 
-                    console.log(element)
+                    
+                    
+                    
+                    document.getElementById('articleCount').onchange=function(e){
+                        var subTotal = e.target.value * element.unitCost;
+                        var subTotalElement = document.getElementById('articleTotal');
+                        subTotalElement.innerText = element.currency + ' ' + subTotal;
+                        cartInicialSubTotal.innerText = element.currency + ' ' +  subTotal;
+                        var cost = localStorage.getItem('costo de envio');
+                        var porcentaje = cost*subTotal /100;
+                        cartInicialTotal.innerText = element.currency + ' ' +  (porcentaje + subTotal);
+
+                    }
+                    document.getElementById('selectCost').onclick=function(e){
+                        var selectCost = e.target.value;
+                        var count = document.getElementById('articleCount').value;
+                        localStorage.setItem('costo de envio', selectCost);
+                        var cost = localStorage.getItem('costo de envio');
+                        cartInicialSend.innerText = '%' + cost;
+                        var porcentaje = cost*((count * element.unitCost) /100);
+                        var cartInicialTotal = document.getElementById('cartTotal');
+                        
+                        cartInicialTotal.innerText = element.currency + ' ' + (porcentaje + (count * element.unitCost));
+                        
+
+                    }
+
+                    document.getElementById('saveButton').onclick=function(e){
+                        var cardNameNumber = document.getElementById('cardName').value + ' ' + document.getElementById('cardNumber').value;
+                        var cardExpiration = document.getElementById('cardExpireMonth').value + ' '+ document.getElementById('cardExpireYear').value + ' '+ document.getElementById('cvv').value;
+                        localStorage.setItem('Card info', cardNameNumber)
+                        localStorage.setItem('Card expiration', cardExpiration)
+
+                        var fieldIDArray = [$('#cardName'), $('#cardNumber'),$('#cardExpireMonth'),$('#cardExpireYear'),$('#cvv')];
+                        
+                        for (i = 4; i < fieldIDArray.length; i++) {
+                            if(fieldIDArray[i].val()){
+                                e.preventDefault();
+                                $('#exampleModal').modal('hide')
+                                
+                            }
+                        }
+                       
+                        
+                    }
+
+                    document.getElementById('saveButtonBank').onclick=function(e){
+
+                        var bankIDArray = [$('#ccmonth')]
+                        for (i=0;i<bankIDArray.length; i++){
+                            if(bankIDArray[i].val()){
+                                e.preventDefault();
+                                $('#exampleModal1').modal('hide')
+                            }
+                        }
+                    }
+                
          }
 }
-
-
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -57,6 +114,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 
              cartPopulate(cart);
 
+
         }
 
         var removeCartItemButtons  = document.getElementsByClassName('btn-danger')
@@ -65,7 +123,10 @@ document.addEventListener("DOMContentLoaded", function(e){
             button.addEventListener('click', function(event) {
             var buttonClicked = event.target
             buttonClicked.parentElement.parentElement.remove()
+            document.getElementById('cartSubTotal').innerText = 'UYU 0'
             document.getElementById('cartTotal').innerText = 'UYU 0'
+            document.getElementById('sendCost').innerText = ' '
+            
         })
     }
         
