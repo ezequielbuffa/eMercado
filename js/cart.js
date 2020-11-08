@@ -73,8 +73,7 @@ function cartPopulate(array){
                     document.getElementById('saveButton').onclick=function(e){
                         var cardNameNumber = document.getElementById('cardName').value + ' ' + document.getElementById('cardNumber').value;
                         var cardExpiration = document.getElementById('cardExpireMonth').value + ' '+ document.getElementById('cardExpireYear').value + ' '+ document.getElementById('cvv').value;
-                        localStorage.setItem('Card info', cardNameNumber)
-                        localStorage.setItem('Card expiration', cardExpiration)
+                        
 
                         var fieldIDArray = [$('#cardName'), $('#cardNumber'),$('#cardExpireMonth'),$('#cardExpireYear'),$('#cvv')];
                         

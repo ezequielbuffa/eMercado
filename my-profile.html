@@ -48,26 +48,47 @@
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <div class="container">
+    <div class="text-center p-4">
+      <h2>Mi perfíl</h2>
     </div>
-  </div>
-  <footer class="text-muted bg-light">
-    <div class="container">
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    <div class="row">
+        <div class="col-md-4 border-right">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <img class="rounded-circle mt-5" id="avatarImage" src="https://exelord.com/ember-initials/images/default-d5f51047d8bd6327ec4a74361a7aae7f.jpg" alt="avatarInput" width="150">
+            <br>
+            <input id="avatarInput" type="file"  alt="avatarInput" style="display: none;">
+            <input type="button" value="Selecciona imagen" onclick="document.getElementById('avatarInput').click();">
+            <input type="button" value="Quitar imagen" id="deleteImage" >
+          </div>
+        </div>
+        <div class="col-md-8">
+          <br><br><br>
+            <div class="p-3 py-5">
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                      <input type="text" id="profileFLname" class="form-control" placeholder="Nombre y apellidos" value="">
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" id="profileAge" class="form-control" placeholder="Edad" value="">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                      <input type="text" id="profileEmail" class="form-control" placeholder="Email" value="">
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" id="profilePhone" class="form-control" placeholder="Télefono de contacto" value="">
+                    </div>
+                </div>
+                <div class="mt-5 text-right">
+                  <button class="btn btn-primary profile-button" type="button" id="profileSendButton">Guardar</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </footer>
-  <div class="alert fade alert-success" role="alert" id="alertResult">
-    <span id="resultSpan"></span>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+</div>
+  
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -76,6 +97,15 @@
       <div></div>
     </div>
   </div>
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/dropzone.js"></script>
