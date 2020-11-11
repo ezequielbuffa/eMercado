@@ -5,13 +5,8 @@ document.getElementById('profileSendButton').onclick=function(e){
         phone = document.getElementById('profilePhone').value,
         userInfo = {"name": fnameLname, "age":age, "email":email, "phone":phone},
         userInfoParsed = JSON.stringify(userInfo);
-    localStorage.setItem('userInfo', userInfoParsed);
-    let obj = JSON.parse(localStorage.getItem('userInfo'))
-
-    fnameLname = obj.name
-    age.value = obj.age;
-    email.value=obj.email;
-    phone.value=obj.phone;
+    
+        localStorage.setItem('userInfo', userInfoParsed);
 
 }
 
@@ -74,4 +69,5 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById('profileAge').value = obj.age
     document.getElementById('profileEmail').value = obj.email
     document.getElementById('profilePhone').value = obj.phone
+    
 });
