@@ -1,5 +1,7 @@
 var category = {};
 
+//Functions
+
 function showImagesGallery(array){
 
     let htmlContentToAppend = "";
@@ -26,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(CATEGORY_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
-            category = resultObj.data;
+            category = resultObj.data.data;
 
             let categoryNameHTML  = document.getElementById("categoryName");
             let categoryDescriptionHTML = document.getElementById("categoryDescription");

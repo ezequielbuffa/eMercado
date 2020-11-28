@@ -4,6 +4,13 @@ const ORDER_DESC_BY_RELEVANCE = "Relevancia";
 var minPrice = undefined;
 var maxPrice = undefined;
 
+let keysToRemove = ['costo de envio', 'cardInfo', 'bankInfo']
+                    for (key of keysToRemove) {
+                        localStorage.removeItem(key);
+                    }; 
+
+
+// Functions
 function sortProducts(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_COST)
@@ -83,7 +90,7 @@ function sortAndShowProducts(sortCriteria, productsArray){
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
-            sortAndShowProducts(ORDER_ASC_BY_COST, resultObj.data);
+            sortAndShowProducts(ORDER_ASC_BY_COST, resultObj.data.data);
         }
     });
 

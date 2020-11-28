@@ -48,171 +48,190 @@
       </div>
     </div>
   </nav>
-  <div class="container">
-    <div class="text-center p-4">
-      <h2>Carrito de compras</h2>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
-            <table class="table table-hover">
-              <thead>
-                  <tr>
-                      <th>Productos</th>
-                      <th>Cantidad</th>
-                      <th class="text-center">Precio</th>
-                      <th class="text-center">Total</th>
-                      <th> </th>
-                  </tr>
-              </thead>
-              <tbody id="cartItems"></tbody>
-                <tr>
-                  <td>
-                    <h5>Método de pago:</h5>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                      Tarjeta de crédito <span class="glyphicon glyphicon-play"></span>
-                    </button>
-                    <form>
-                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Tarjeta de crédito</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
+  <form method="POST" action="http://localhost:4040/buy_files">
+    <div class="container">
+      <section>
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="mb-3">
+              <div class="pt-4 wish-list">
+                <h5 class="mb-4">Carrito de compras</h5>
+                <form>
+                  <div id="cartItems"></div>
+                </form>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="pt-4">
+                <h5 class="mb-4">Aceptamos</h5>
+                <img class="mr-2" width="45px"
+                  src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+                  alt="Visa">
+                <img class="mr-2" width="45px"
+                  src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+                  alt="American Express">
+                <img class="mr-2" width="45px"
+                  src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+                  alt="Mastercard">
+                <img class="mr-2" width="45px"
+                  src="https://mdbootstrap.com/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.png"
+                  alt="PayPal acceptance mark">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <br>
+            <br>
+            <div class="mb-3">
+              <div class="pt-4">
+                <div id="payMethod">
+                  <h5>Método de pago:</h5>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Tarjeta de crédito <span class="glyphicon glyphicon-play"></span>
+                  </button>
+                  <form>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Tarjeta de crédito</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="card ">
+                            <div class="card-header">
+                                        <!-- Info de tarjeta de credito-->
+                              <div id="credit-card" class="tab-pane fade show active pt-3">
+                                <form role="form" id="cardForm">
+                                  <div class="form-group">
+                                    <label for="username">
+                                      <h6>Nombre del titular</h6>
+                                    </label> 
+                                    <input id="cardName" type="text" name="username" placeholder="Nombre del titular"  class="form-control" required> 
+                                  </div>
+                                  <div class="form-group"> 
+                                    <label for="cardNumber">
+                                      <h6>Número de tarjeta</h6>
+                                    </label>
+                                    <div class="input-group"> 
+                                      <input id="cardNumber" type="text" name="cardNumber" placeholder="Número de tarjeta" class="form-control " required>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-sm-8">
+                                      <div class="form-group"> 
+                                        <label>
+                                          <span class="hidden-xs">
+                                            <h6>Fecha de expiración</h6>
+                                          </span>
+                                        </label>
+                                        <div class="input-group"> 
+                                          <input id="cardExpireMonth" type="number" placeholder="MM" name="" class="form-control" min="1" required> 
+                                          <input id="cardExpireYear" type="number" placeholder="YY" name="" class="form-control"  min="1" required> 
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                      <div class="form-group mb-4"> 
+                                        <label data-toggle="tooltip" title="Three digit CV code on the back of your card">
+                                          <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
+                                        </label> 
+                                        <div class="input-group">
+                                          <input id="cvv" type="text" minlength="3" maxlength="3" required class="form-control"> 
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div><!-- End -->
                             </div>
-                            <div class="card ">
-                              <div class="card-header">
-                                          <!-- Info de tarjeta de credito-->
-                                <div id="credit-card" class="tab-pane fade show active pt-3">
-                                  <form role="form" id="cardForm">
-                                    <div class="form-group">
-                                      <label for="username">
-                                        <h6>Nombre del titular</h6>
-                                      </label> 
-                                      <input id="cardName" type="text" name="username" placeholder="Nombre del titular"  class="form-control" required> 
-                                    </div>
-                                    <div class="form-group"> 
-                                      <label for="cardNumber">
-                                        <h6>Número de tarjeta</h6>
-                                      </label>
-                                      <div class="input-group"> 
-                                        <input id="cardNumber" type="text" name="cardNumber" placeholder="Número de tarjeta" class="form-control " required>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-sm-8">
-                                        <div class="form-group"> 
-                                          <label>
-                                            <span class="hidden-xs">
-                                              <h6>Fecha de expiración</h6>
-                                            </span>
-                                          </label>
-                                          <div class="input-group"> 
-                                            <input id="cardExpireMonth" type="number" placeholder="MM" name="" class="form-control" min="1" required> 
-                                            <input id="cardExpireYear" type="number" placeholder="YY" name="" class="form-control"  min="1" required> 
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="col-sm-4">
-                                        <div class="form-group mb-4"> 
-                                          <label data-toggle="tooltip" title="Three digit CV code on the back of your card">
-                                            <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
-                                          </label> 
-                                          <div class="input-group">
-                                            <input id="cvv" type="text" minlength="3" maxlength="3" required class="form-control"> 
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </form>
-                                </div><!-- End -->
-                              </div>
-                              <div class="modal-footer">
-                                
-                                <input  type="submit" class="btn btn-primary" id="saveButton" value="Guardar" ></input>
-                              </div>
+                            <div class="modal-footer">
+                              <input  type="submit" class="btn btn-primary" id="saveButton" value="Guardar" ></input>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </form>
+                    </div>
+                  </form>
                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" style="margin-top: 3px;">
                     Transferencia Bancaria <span class="glyphicon glyphicon-play"></span>
                   </button>
                   <form>
-                  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel1">Transferencia Bancaria</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="card ">
-                          <div class="card-header">
-                            <form role="form" id="cardForm1">
-                              <div id="net-banking" class="tab-pane active pt-3">
-                                <div class="form-group "> <label for="Select Your Bank">
-                                        <h6>Selecciona tu banco</h6>
-                                    </label> <select class="form-control" id="ccmonth" required>
-                                        <option value="" selected disabled >--Por favor selecciona tu banco--</option>
-                                        <option>Bank 1</option>
-                                        <option>Bank 2</option>
-                                        <option>Bank 3</option> 
-                                    </select> </div>
-                              </div>
-                            </form>
+                    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel1">Transferencia Bancaria</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
                           </div>
-                        </div>
-                        <div class="modal-footer">
-                          <input  type="submit" class="btn btn-primary" id="saveButtonBank" value="Guardar" ></input>
+                          <div class="card ">
+                            <div class="card-header">
+                              <form role="form" id="cardForm1">
+                                <div id="net-banking" class="tab-pane active pt-3">
+                                  <div class="form-group "> 
+                                    <label for="Select Your Bank">
+                                      <h6>Selecciona tu banco</h6>
+                                    </label> 
+                                    <select class="form-control" id="ccmonth" required>
+                                      <option value="" selected disabled >--Por favor selecciona tu banco--</option>
+                                      <option>Bank 1</option>
+                                      <option>Bank 2</option>
+                                      <option>Bank 3</option> 
+                                    </select> 
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <input  type="submit" class="btn btn-primary" id="saveButtonBank" value="Guardar" ></input>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  </form>   </td>
-                  <td>   </td>
-                  <td>   </td>
-                  <td><h5>Subtotal:</h5></td>
-                  <td class="text-right"><h5><strong id="cartSubTotal"></strong></h5></td>
-                </tr>
-                <tr><!-- Contenido de tipo de envio-->
-                  <td><select class="form-control" style="width: auto;" id="selectCost" required>
+                  </form> 
+                </div>
+                <br>
+                <div id="shippingMethod">
+                  <select class="form-control" style="width: auto;" id="selectCost" required>
                     <option value="" disabled selected>Método de envío</option>
                     <option value="15">Premium (2-5 días) - 15%</option>
                     <option value="7">Express (5-8 días) - 7%</option>
                     <option value="5">Standard (12-15 días) - 5%</option>
                   </select>
-                  <!-- End --></td>
-                  <td>   </td>
-                  <td>   </td>
-                  <td><h5>Envío:</h5></td>
-                  <td class="text-right"><h5><strong id="sendCost"></strong></h5></td>
-                </tr>
-                <tr>
-                  <td>   </td>
-                  <td>   </td>
-                  <td>   </td>
-                  <td><h3>Total:</h3></td>
-                  <td class="text-right"><h3><strong id="cartTotal"></strong></h3></td>
-                </tr>
-                <tr>
-                  <td>   </td>
-                  <td>   </td>
-                  <td>   </td>
-                  <td>   </td>
-                  <td>
-                    <button type="button" class="btn btn-success">
-                        Comprar <span class="glyphicon glyphicon-play"></span>
-                    </button>
-                  </td>
-                </tr>
-            </table>
+                </div>
+
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="pt-4">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                    Subtotal:
+                    <span id="cartSubTotal"></span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                    Envío:
+                    <span id="sendCost"></span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                    <div>
+                      <strong>Total:</strong>
+                    </div>
+                    <span><strong id="cartTotal"></strong></span>
+                  </li>
+                </ul>
+                <button type="submit" class="btn btn-primary btn-block" id="buyButton">Comprar</button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+    </div>
+</form>
       <div id="spinner-wrapper">
         <div class="lds-ring">
           <div></div>

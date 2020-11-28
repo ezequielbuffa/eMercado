@@ -2,6 +2,8 @@ var product_info = {};
 var product_info_comments = {};
 var product_info_relatedProducts = {};
 
+
+// Functions
 function showImagesGallery(array){
 
     let htmlContentToAppend = "";
@@ -94,6 +96,7 @@ function add(ths,sno){
 }
 
 
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -101,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
-            product_info = resultObj.data;
+            product_info = resultObj.data.data;
 
             let productInfoNameHTML  = document.getElementById("productInfoName");
             let productInfoDescriptionHTML = document.getElementById("productInfoDescription");
@@ -123,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
-            product_info_comments = resultObj.data;
+            product_info_comments = resultObj.data.data;
 
             showComments(product_info_comments);
         }
@@ -132,11 +135,27 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
-            product_info_relatedProducts = resultObj.data;
+            product_info_relatedProducts = resultObj.data.data;
 
             showRelatedProducts(product_info_relatedProducts);
         }
     })
+
+    const container = document.getElementById('star_rating');
+    const items = container.querySelectorAll('fa fa-star');
+    container.onclick = e =>{
+        const elClass = e.target.classList;
+        if (!elClass.contains('active')) {
+            items.forEach(
+                item => item.classList.remove('active')
+            );
+            elClass.add('active');
+            var value = e.target.getAttribute('id');
+            var replace = value.replace('star', '');
+
+            localStorage.setItem('starRating', replace)
+        }
+    };
 });
 
 document.getElementById("send").onclick= function (e) {
@@ -144,9 +163,7 @@ document.getElementById("send").onclick= function (e) {
     let date = new Date();
     let name = localStorage.getItem("email");
     let com = document.getElementById("commentBox").value;
-    let stars = document.getElementById("star_rating");
-
-    stars = parseInt(stars);
+    let stars = localStorage.getItem('starRating');
     
     const newcomment = {
         dateTime: date,
@@ -158,5 +175,8 @@ document.getElementById("send").onclick= function (e) {
     product_info_comments.push(newcomment);
 
     showComments(product_info_comments);
+
+    localStorage.removeItem('starRating')
 };
+
 

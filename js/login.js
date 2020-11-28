@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         let email = document.getElementById("email").value;
 //        let password = document.getElementById("password").value;
         localStorage.setItem('email', email);
-        window.location.href = "./index";
+        window.location.href = "./index.html";
     };
 });
 
